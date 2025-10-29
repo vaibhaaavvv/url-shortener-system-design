@@ -1,0 +1,34 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  data:
+    redis:
+      host: redis
+      port: 6379
+  cloud:
+    gateway:
+      routes:
+        - id: user-init
+          uri: http://shortening-service:8081
+          predicates:
+            - Path=/api/v1/user/init
+            - Method=POST
+        - id: shortening-service
+          uri: http://shortening-service:8081
+          predicates:
+            - Path=/api/v1/shorten
+            - Method=POST
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+                key-resolver: "#{@ipKeyResolver}"
+        - id: redirect-analytics-service
+          uri: http://redirect-analytics-service:8082
+          predicates:
+            - Path=/api/v1/**
+            - Method=GET
