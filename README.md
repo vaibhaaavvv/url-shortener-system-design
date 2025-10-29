@@ -26,11 +26,35 @@ A scalable URL shortening service built with Spring Boot microservices, featurin
 - **Caching**: Redis-based URL lookup optimization
 - **Background Cleanup**: Hourly expired URL removal
 
-## Setup process
+## Setup
 
+### Quick Start
+```bash
+git clone https://github.com/vaibhaaavvv/url-shortener-system-design.git
+cd url-shortener-system-design
 docker-compose up --build
+```
 
-Access the application: http://localhost:3000
+### Seed Data Setup
+Verify and load sample data:
+
+```bash
+# Check if data exists
+docker exec -it url-shortener-db psql -U admin -d url_shortener -c "SELECT COUNT(*) FROM short_urls;"
+
+# If count is 0, load sample URLs
+docker exec -i url-shortener-db psql -U admin -d url_shortener < backend/generate-sample-data.sql
+
+# Check click events
+docker exec -it url-shortener-db psql -U admin -d url_shortener -c "SELECT COUNT(*) FROM click_events;"
+
+# If count is 0, load sample events
+docker exec -i url-shortener-db psql -U admin -d url_shortener < backend/generate-click-events.sql
+```
+
+### Access
+- **Application**: http://localhost:3000
+- **API Gateway**: http://localhost:8080
 
 
 ## API Endpoints
