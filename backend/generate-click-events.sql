@@ -7,7 +7,7 @@ DECLARE
     random_timestamp TIMESTAMP;
 BEGIN
     FOR url_record IN SELECT short_url FROM short_urls WHERE user_id = 'system-generated' LOOP
-        click_count := floor(random() * 500 + 1)::INTEGER;
+        click_count := floor(random() * 10000 + 1)::INTEGER;
         
         FOR i IN 1..click_count LOOP
             random_timestamp := NOW() - INTERVAL '1 day' * (random() * 30) - INTERVAL '1 hour' * (random() * 24) - INTERVAL '1 minute' * (random() * 60);

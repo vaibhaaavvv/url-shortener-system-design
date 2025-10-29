@@ -26,6 +26,11 @@ A scalable URL shortening service built with Spring Boot microservices, featurin
 - **Caching**: Redis-based URL lookup optimization
 - **Background Cleanup**: Hourly expired URL removal
 
+## Prerequisites
+
+- **Docker** (v20.10+) and **Docker Compose** (v2.0+)
+- **Ports**: 3000, 8080, 8081, 8082, 5432, 6379 must be available
+
 ## Setup
 
 ### Quick Start

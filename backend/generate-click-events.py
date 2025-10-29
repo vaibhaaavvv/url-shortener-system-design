@@ -21,7 +21,7 @@ user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
 
 # Generate click events for each URL
 for short_url in short_urls:
-    click_count = random.randint(1, 500)
+    click_count = random.randint(1, 10000)
     
     for _ in range(click_count):
         # Random timestamp within past 1 month
