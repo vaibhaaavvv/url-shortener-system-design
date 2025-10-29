@@ -40,7 +40,7 @@ cd url-shortener-system-design
 docker-compose up --build
 ```
 
-*Note: Initial build may take 3-4 minutes*
+*Note: Initial build may take 2-3 minutes*
 
 ### Seed Data Setup
 Data scripts run automatically in containers. If scripts fail, manually load sample data:
